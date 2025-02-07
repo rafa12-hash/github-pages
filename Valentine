@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anniversary Quiz</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        .button { display: inline-block; margin: 10px; padding: 10px 20px; font-size: 18px; cursor: pointer; position: relative; }
+        .correct { background-color: green; color: white; }
+        .wrong { background-color: red; color: white; }
+        .hidden { display: none; }
+        #noButton { position: absolute; transition: top 0.3s, left 0.3s; }
+    </style>
+</head>
+<body>
+
+    <!-- First Question -->
+    <div id="question1">
+        <h1>When is our anniversary?</h1>
+        <button class="button" onclick="checkAnswer(this, false)">April 12</button>
+        <button class="button" onclick="checkAnswer(this, false)">June 5</button>
+        <button class="button" onclick="checkAnswer(this, true)">May 18</button>
+        <button class="button" onclick="checkAnswer(this, false)">July 22</button>
+    </div>
+
+    <!-- Second Question -->
+    <div id="question2" class="hidden">
+        <h1>Do you love me?</h1>
+        <button class="button" onclick="loveAnswer(true)">Yes</button>
+        <button class="button" onclick="loveAnswer(false)">No</button>
+    </div>
+
+    <!-- Third Question -->
+    <div id="question3" class="hidden">
+        <h1>Really?</h1>
+        <button class="button" onclick="reallyAnswer(true)">Yes, really!</button>
+        <button class="button" onclick="reallyAnswer(false)">Uhh... maybe?</button>
+    </div>
+
+    <!-- Fourth Question -->
+    <div id="question4" class="hidden">
+        <h1>Really, really?</h1>
+        <button class="button" onclick="reallyReallyAnswer(true)">Yes, really really!</button>
+        <button class="button" onclick="reallyReallyAnswer(false)">Wait, what?</button>
+    </div>
+
+    <!-- Fifth Question -->
+    <div id="question5" class="hidden">
+        <h1>Then, would you be my valentine? 🥹</h1>
+        <button class="button" onclick="valentineAnswer(true)">Yes! ❤️</button>
+        <button class="button" id="noButton" onmouseover="moveButton()">No 😢</button>
+    </div>
+
+    <script>
+        function checkAnswer(button, isCorrect) {
+            if (isCorrect) {
+                button.classList.add("correct");
+                alert("Correct! Our anniversary is May 18!");
+                document.getElementById("question1").classList.add("hidden");
+                document.getElementById("question2").classList.remove("hidden");
+            } else {
+                button.classList.add("wrong");
+                alert("Oops! Try again.");
+            }
+        }
+
+        function loveAnswer(isYes) {
+            if (isYes) {
+                document.getElementById("question2").classList.add("hidden");
+                document.getElementById("question3").classList.remove("hidden");
+            } else {
+                alert("😢 That hurts...");
+            }
+        }
+
+        function reallyAnswer(isYes) {
+            if (isYes) {
+                document.getElementById("question3").classList.add("hidden");
+                document.getElementById("question4").classList.remove("hidden");
+            } else {
+                alert("Hey! No backing out now! 😆");
+            }
+        }
+
+        function reallyReallyAnswer(isYes) {
+            if (isYes) {
+                document.getElementById("question4").classList.add("hidden");
+                document.getElementById("question5").classList.remove("hidden");
+            } else {
+                alert("Wait, what?! 😆");
+            }
+        }
+
+        function valentineAnswer(isYes) {
+            if (isYes) {
+                alert("Yay! You're my Valentine! ❤️😍");
+            }
+        }
+
+        function moveButton() {
+            let noButton = document.getElementById("noButton");
+            let newX = Math.random() * (window.innerWidth - 200);
+            let newY = Math.random() * (window.innerHeight - 100);
+            noButton.style.left = `${newX}px`;
+            noButton.style.top = `${newY}px`;
+        }
+    </script>
+
+</body>
+</html>
